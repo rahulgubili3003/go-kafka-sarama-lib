@@ -24,12 +24,15 @@ func main() {
 	brokersUrl := []string{"localhost:9092"}
 
 	// Establish Connection with the Kafka Cluster
+	// If the connection is successful, ConnectConsumer returns a worker object that represents the connected consumer. This object is used to interact with the Kafka cluster.
 	worker, err := client.ConnectConsumer(brokersUrl)
 	if err != nil {
 		panic(err)
 	}
 
+	
 	// Consume Messages from the Topic and Partition
+	// This function call instructs the consumer to start consuming messages from a specific partition of a given topic.
 	consumer, err := worker.ConsumePartition(topic, 0, sarama.OffsetOldest)
 	if err != nil {
 		panic(err)
