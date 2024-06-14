@@ -23,11 +23,13 @@ func main() {
 
 	brokersUrl := []string{"localhost:9092"}
 
+	// Establish Connection with the Kafka Cluster
 	worker, err := client.ConnectConsumer(brokersUrl)
 	if err != nil {
 		panic(err)
 	}
 
+	// Consume Messages from the Topic and Partition
 	consumer, err := worker.ConsumePartition(topic, 0, sarama.OffsetOldest)
 	if err != nil {
 		panic(err)
